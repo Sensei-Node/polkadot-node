@@ -11,12 +11,17 @@ This image is intended to quickly launch a Polkadot or Kusama node from a snapsh
 - CHAIN (defaults to polkadot): polkadot/kusama
 - SNAP_MODE (defaults to true): true/false
 
-Important: This image always downloads the protocol client from the official Parity repository.
+## Quickstart (3 steps).
 
-## How to launch using docker-compose
+    git clone https://github.com/Sensei-Node/polkadot-node
+    cd polkadot-node
+    docker-compose up -d
+
+## Notes
 - Need to specify the env variables inside the docker-compose file.
 - Nodes launched with this docker-compose have RPC api enabled by default.
 - Snap mode will always look for latest snapshot.
+- Important: This image always downloads the protocol client from the official Parity repository.
 
 ## Resources
 - API docs: https://polkadot.js.org/docs/substrate/rpc
