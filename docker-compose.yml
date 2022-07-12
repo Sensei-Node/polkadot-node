@@ -11,7 +11,7 @@ services:
       - data:/data
       - backup:/root/.local/share/polkadot
     environment:
-      - SNAP_MODE=false
+      - SNAP_MODE=true
       - CHAIN=polkadot
 
 volumes:
