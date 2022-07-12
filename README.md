@@ -31,7 +31,7 @@ If you are installing from snapshot the connection will be refused until the nod
 
 ### Check the node logs
 
-docker logs --tail 100 polka-node
+    docker logs --tail 100 polka-node
 
 ## Notes
 - Need to specify the env variables inside the docker-compose file.
