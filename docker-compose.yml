@@ -3,6 +3,7 @@ version: '3.3'
 services:
   node:
     image: senseinode/polkadot:latest
+    container_name: polka-node
     restart: unless-stopped
     ports:
       - 9933:9933
