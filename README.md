@@ -9,7 +9,7 @@ This image is intended to quickly launch a Polkadot or Kusama node from a snapsh
 
 ### Env variables
 - CHAIN (defaults to polkadot): polkadot/kusama
-- SNAP_MODE (defaults to false): true/false
+- SNAP_MODE (defaults to true): true/false
 
 Important: This image always downloads the protocol client from the official Parity repository.
 
