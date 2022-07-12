@@ -1,37 +1,28 @@
 # syntax=docker/dockerfile:1
 
 # Builder phase
-FROM rust:latest as builder
+FROM ubuntu:22.04 as builder
 
-RUN ["rustup", "update"]
 RUN ["apt", "update"]
-RUN ["apt", "install", "-y", "make", "clang", "pkg-config", "libssl-dev", "build-essential", "ntp"]
+RUN ["apt", "install", "-y", "wget"]
 
 CMD ["bash"]
 
-RUN git clone https://github.com/paritytech/polkadot.git
-WORKDIR /polkadot
+RUN wget https://github.com/paritytech/polkadot/releases/download/v0.9.25/polkadot
 
-RUN git checkout v0.9.16
-RUN ./scripts/init.sh
-RUN cargo build --release
-
-# Actual image 
-FROM ubuntu:20.04
+# Running image 
+FROM ubuntu:22.04
 
 WORKDIR /data
 
-COPY --from=builder  /polkadot/target/release/polkadot .
-
-COPY ./init.sh .
+COPY --from=builder  /polkadot .
+RUN chmod +x ./polkadot
 
 ENV RUST_BACKTRACE=1
-
 ENV SNAP_MODE=false
-
 ENV CHAIN=polkadot
 
+COPY ./init.sh .
 RUN chmod +x ./init.sh
 
 ENTRYPOINT [ "./init.sh" ]
-
