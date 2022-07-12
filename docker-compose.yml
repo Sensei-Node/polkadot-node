@@ -2,15 +2,17 @@ version: '3.3'
 
 services:
   node:
-    image: senseinode/polkadot:latest # You can use your own build
+    image: senseinode/polkadot:latest
     restart: unless-stopped
-    env_file: .env
     ports:
       - 9933:9933
       - 30333:30333
     volumes:
       - data:/data
       - backup:/root/.local/share/polkadot
+    environment:
+      - SNAP_MODE=false
+      - CHAIN=polkadot
 
 volumes:
   data:
