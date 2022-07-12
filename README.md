@@ -17,6 +17,12 @@ This image is intended to quickly launch a Polkadot or Kusama node from a snapsh
     cd polkadot-node
     docker-compose up -d
 
+Check if you are synced to the network with the following curl command:
+
+    curl --location --request POST 'localhost:9933' --header 'Content-Type: application/json' --data-raw '{"id":1, "jsonrpc":"2.0", "method": "chain_getHeader"}'
+
+If you are installing from snapshot the connection will be refused until the node finishes downloading and extracting the blockchain database. 
+
 ## Notes
 - Need to specify the env variables inside the docker-compose file.
 - Nodes launched with this docker-compose have RPC api enabled by default.
