@@ -29,6 +29,10 @@ The block height is specified as "number" and is expressed in hex format, use a 
 
 If you are installing from snapshot the connection will be refused until the node finishes downloading and extracting the blockchain database. 
 
+### Check the node logs
+
+docker logs --tail 100 polka-node
+
 ## Notes
 - Need to specify the env variables inside the docker-compose file.
 - Nodes launched with this docker-compose have RPC api enabled by default.
