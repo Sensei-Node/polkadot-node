@@ -8,7 +8,7 @@ RUN ["apt", "install", "-y", "wget"]
 
 CMD ["bash"]
 
-RUN wget https://github.com/paritytech/polkadot/releases/download/v0.9.25/polkadot
+RUN wget https://github.com/paritytech/polkadot/releases/download/v0.9.29/polkadot
 
 # Running image 
 FROM ubuntu:22.04

@@ -33,7 +33,7 @@ if [ "$SNAP_MODE" == "true" -a ! -f ./.snapmode ]; then
         echo "DB directory doesn't exist."
         echo "launching as no-snapshot node"
         rm .snapmode
-        ./polkadot --chain=$CHAIN --pruning=archive --rpc-external --ws-external --rpc-cors=all
+        ./polkadot --chain=$CHAIN --database=RocksDb --unsafe-pruning --pruning=1000 --rpc-external --ws-external --rpc-cors=all
         exit 0
     fi
 else

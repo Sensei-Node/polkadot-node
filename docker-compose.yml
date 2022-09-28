@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
   node:
-    image: senseinode/polkadot:latest
+    image: senseinode/polkadot:with-snap-latest
     restart: unless-stopped
     ports:
       - 9933:9933
