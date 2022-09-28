@@ -3,6 +3,7 @@ version: '3.3'
 services:
   node:
     image: senseinode/polkadot:with-snap-latest
+    container_name: polka-node
     restart: unless-stopped
     ports:
       - 9933:9933
@@ -11,7 +12,7 @@ services:
       - data:/data
       - backup:/root/.local/share/polkadot
     environment:
-      - SNAP_MODE=false
+      - SNAP_MODE=true
       - CHAIN=polkadot
 
 volumes:
