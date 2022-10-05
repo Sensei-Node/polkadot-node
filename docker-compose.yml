@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
   node:
-    image: senseinode/polkadot:with-snap-latest
+    image: senseinode/polkadot:latest
     container_name: polka-node
     restart: unless-stopped
     ports:
@@ -14,6 +14,7 @@ services:
     environment:
       - SNAP_MODE=false
       - CHAIN=polkadot
+      - DEBUG=false
 
 volumes:
   data:
