@@ -23,7 +23,7 @@ if [ "$SNAP_MODE" == "true" -a ! -f ./.snapmode ]; then
         echo "Downloading snapshot. This can take several minutes"
         chain=$([[ "$CHAIN" == "polkadot" ]] && echo "dot" || echo "ksm")
         wget -O- --no-verbose --show-progress --progress=dot:giga https://$chain-rocksdb.polkashots.io/snapshot | lz4 -c -v -d - | tar -x -C $DB_DIR
-        ./polkadot --chain=$CHAIN --database=RocksDb --unsafe-pruning --pruning=1000 --rpc-external --ws-external --rpc-cors=all
+        ./polkadot --chain=$CHAIN --database=RocksDb  --pruning=1000 --rpc-external --ws-external --rpc-cors=all
         if [ "$?" == "1" ]; then
             echo "A problem ocurred when trying to download snapshot"
             rm .snapmode
@@ -33,13 +33,16 @@ if [ "$SNAP_MODE" == "true" -a ! -f ./.snapmode ]; then
         echo "DB directory doesn't exist."
         echo "launching as no-snapshot node"
         rm .snapmode
-        ./polkadot --chain=$CHAIN --database=RocksDb --unsafe-pruning --pruning=1000 --rpc-external --ws-external --rpc-cors=all
+        ./polkadot --chain=$CHAIN --database=RocksDb  --pruning=1000 --rpc-external --ws-external --rpc-cors=all
         exit 0
     fi
 else
     if [ -f ./.snapmode ]; then
         echo "Snapshot was taken from backup. Launching as a snapshoot node..."
-        ./polkadot --chain=$CHAIN --database=RocksDb --unsafe-pruning --pruning=1000 --rpc-external --ws-external --rpc-cors=all
+        ./polkadot --chain=$CHAIN --database=RocksDb  --pruning=1000 --rpc-external --ws-external --rpc-cors=all
+    elif [ "$DEBUG" == "true" ]; then
+        echo "launching as no-snapshot node with debug log level"
+        ./polkadot --chain=$CHAIN --database=RocksDb  --pruning=1000 --rpc-external --ws-external --rpc-cors=all -ldebug
     else
         echo "launching as no-snapshot node"
         ./polkadot --chain=$CHAIN --pruning=archive --rpc-external --ws-external --rpc-cors=all
